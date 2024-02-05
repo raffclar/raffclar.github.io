@@ -1,0 +1,75 @@
+---
+layout: single
+classes: wide
+title:  "Emscripten (C/C++ to JS) File Upload Example"
+date:   2019-10-02 23:37:18 +0100
+categories: jekyll update
+---
+
+Emscripten is a compiler backend that generates web assembly (.wasm) files from LLVM's intermediate representation. This representation can be generated through Clang.
+
+[I have compiled one of my tools written in C++ using Emscripten](https://github.com/raffclar/pe_appended). This can be run by selecting a Windows executable. Large executables might fail due to memory allocation limits.
+
+<label style="display:block;font: 2rem 'Fira Sans', sans-serif;" for="emscripten-file-input">Select a Windows Executable (exe) file:</label>
+<input id="emscripten-file-input" type="file">
+<textarea id="emscripten-output" rows="16" cols="60"></textarea>
+
+<script type='text/javascript'>
+    var exeInput = document.getElementById('emscripten-file-input');
+
+    exeInput.onchange = function(event) {
+        var reader = new FileReader();
+        var files = event.target.files;
+
+        reader.onloadend = function () {
+            var fileName = "file";
+            var base64result = reader.result.split(',')[1];
+            run_pe_appended(fileName, base64result);
+        };
+
+        reader.readAsDataURL(files[0]);
+    };
+
+    var Module;
+
+    function run_pe_appended(fileName, fileData) {
+        Module = {
+            preRun: [],
+            postRun: [],
+            print: (function () {
+                var element = document.getElementById('emscripten-output');
+                if (element) element.value = ''; // clear browser cache
+                return function (text) {
+                    if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                    console.log(text);
+                    if (element) {
+                        element.value += text + "\n";
+                        element.scrollTop = element.scrollHeight; // focus on bottom
+                    }
+                };
+            })(),
+            printErr: function (text) {
+                if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                console.error(text);
+            },
+            preRun: function () {
+                FS.createDataFile(".", fileName, atob(fileData), true, true);
+            },
+            totalDependencies: 0,
+            arguments: [fileName]
+        };
+
+        var emscripten = document.getElementById('emscripten-runner');
+
+        if (emscripten) {
+            emscripten.remove();
+        }
+
+        emscripten = document.createElement('script');
+        emscripten.setAttribute('src','/assets/cpp/pe_appended_loader.js');
+        emscripten.setAttribute('id', 'emscripten-runner');
+
+        document.head.appendChild(emscripten);
+    }
+</script>
+This might have issues with older browsers.

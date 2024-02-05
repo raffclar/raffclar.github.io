@@ -1,0 +1,53 @@
+---
+layout: single
+classes: wide
+title:  "Working on a doorbell receiver in C"
+date:   2019-10-03 11:00:00 +0100
+categories: doorbell c
+---
+
+I want to receive an email whenever someone rings the doorbell. To do this, I’m using an RTL-SDR USB dongle from Nooelec hooked up a to Pi.  
+   
+My doorbell sends a signal 3 times in pulse width modulation on every press. The signal doesn’t change and it’s unique. Good start!
+
+
+## Carrier signal:
+![raw signal graph](https://zanidrak.com/assets/signals/doorbell_raw.png)
+
+### Steps
+
+1. Balance the signal by removing the DC bias. Use averaging.
+2. `Abs()` all values in the signal. I want everything on one side of the X-axis for later on.
+3. Smooth out the amplitude ripples. Use even more averaging for this.
+
+## Demodulated:
+![demodulated graph](https://zanidrak.com/assets/signals/doorbell_demodulated.png)
+
+## Output using a test file:
+![example output from console](https://zanidrak.com/assets/signals/example_cmd.png)
+
+The C program is straightforward. Each pulse/gap has a duration. Just keep track of the current duration of the pulse/gap and progress or reset if the duration is wrong. To do this I iterate through the below array where each element is the next bit of the doorbell signal.
+
+```
+ook_modulation protocol[] = {
+    short_pulse,
+    sync_gap,
+    long_pulse,
+    long_gap,
+    short_pulse,
+    long_gap,
+    short_pulse,
+    short_gap,
+    long_pulse,
+    short_gap,
+    long_pulse,
+    short_gap,
+    long_pulse,
+    short_gap,
+    long_pulse,
+    short_gap,
+    long_pulse,
+    long_gap,
+    ...
+}
+```
