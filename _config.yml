@@ -21,8 +21,9 @@
 title: Stuff 
 description: >- # this means to ignore newlines until "baseurl:"
   Posts on programming and art
+domain: zanidrak.com
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: https://zanidrak.com # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  raffclar 
 
 # Build settings
@@ -32,7 +33,6 @@ plugins:
   - jekyll-feed
 
 defaults:
-  # _posts
   - scope:
       path: ""
       type: posts
