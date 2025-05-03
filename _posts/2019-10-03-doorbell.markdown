@@ -12,7 +12,7 @@ My doorbell sends a signal 3 times in pulse width modulation on every press. The
 
 
 ## Carrier signal:
-![raw signal graph](https://zanidrak.com/assets/signals/doorbell_raw.png)
+![raw signal graph](/assets/signals/doorbell_raw.png)
 
 ### Steps
 
@@ -21,10 +21,10 @@ My doorbell sends a signal 3 times in pulse width modulation on every press. The
 3. Smooth out the amplitude ripples. Use even more averaging for this.
 
 ## Demodulated:
-![demodulated graph](https://zanidrak.com/assets/signals/doorbell_demodulated.png)
+![demodulated graph](/assets/signals/doorbell_demodulated.png)
 
 ## Output using a test file:
-![example output from console](https://zanidrak.com/assets/signals/example_cmd.png)
+![example output from console](/assets/signals/example_cmd.png)
 
 The C program is straightforward. Each pulse/gap has a duration. Just keep track of the current duration of the pulse/gap and progress or reset if the duration is wrong. To do this I iterate through the below array where each element is the next bit of the doorbell signal.
 
