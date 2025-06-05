@@ -19,7 +19,7 @@ For my particular issue it's at `00`.
 After a quick glance at my motherboard's manual to what Asus' `Q_CODE 00` refers to...
 ![q code table](/assets/hardware/q_code_table.png)
 
-...00 is not used. Time to search the web for clues.
+...00 is not used. It's the code shown initially when booting. Time to search the web for clues.
 
 A few posts on the Asus forums indicate CPU, motherboard or PSU. Experience tells me it's either the PSU or motherboard. CPU issues are rare especially after only two years of use.
 At this point I'm two hours into my investigation and I've removed all the components from my PC except for the CPU, PSU and motherboard.
@@ -27,6 +27,6 @@ At this point I'm two hours into my investigation and I've removed all the compo
 I decided to try one last fix before switching out the PSU. I went to Asus's support site and checked for firmware updates to apply the latest version. That's when I found out about these updates...
 ![bios updates on asus website](/assets/hardware/bios_updates.png)
 
-Nice. I suspect Asus's faulty firmware had been setting the CPU SOC voltage beyond the maximum 1.3v even with EXPO (overclocking) disabled. The CPU is now likely dead.
+Nice. I suspect Asus's faulty firmware had been setting the CPU SOC voltage beyond the maximum 1.3v even with EXPO (overclocking) disabled. The CPU is now dead.
 
 After further testing and contacting support, I now have a new CPU and everthing works again.
