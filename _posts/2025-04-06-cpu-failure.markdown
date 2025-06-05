@@ -16,7 +16,7 @@ It shows POST (Power-On Self-Test) codes during boot to help identify the curren
 For my particular issue it's at `00`. 
 ![motherboard stuck on POST](/assets/hardware/cpu_fail.png)
 
-After a quick glance at my motherboard's manual to what Asus' `Q_CODE 00` refers to...
+After a quick glance at my motherboard's manual to see what Asus's `Q_CODE 00` refers to...
 ![q code table](/assets/hardware/q_code_table.png)
 
 ...00 is not used. It's the code shown initially when booting. Time to search the web for clues.
@@ -29,4 +29,4 @@ I decided to try one last fix before switching out the PSU. I went to Asus's sup
 
 Nice. I suspect Asus's faulty firmware had been setting the CPU SOC voltage beyond the maximum 1.3v even with EXPO (overclocking) disabled. The CPU is now dead.
 
-After further testing and contacting support, I now have a new CPU and everthing works again.
+After further testing and contacting support, I now have a new CPU and my PC once again works.
