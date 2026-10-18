@@ -1,0 +1,16 @@
+---
+layout: single
+title:  "Fluidity: heightfield fluid simulation"
+date:   2026-10-18 09:00:00 +0100
+categories: graphics simulation
+---
+Something I've been working on for a while, [Fluidity](https://cms.zanidrak.com/fluidity/) is an interactive water simulator. Uses a 2D heightfield to represent water.
+
+![Fluidity](/assets/fluid/fluid_01.png)
+
+You can pour water onto the terrain, sculpt the ground with circle, mound and plateau brushes, and watch the water flow, pool and cascade in real time.
+
+* Under the hood it is a shallow-water solver using HLL fluxes, with well-balancing so a still lake stays still over uneven ground
+* Adaptive CFL-based timestep. Gravity, bottom friction, viscosity, surface tension and adhesion are all settings you can tune.
+* Live stats show volume, active cells and FPS, and there is a kinetic energy overlay for debugging the flow.
+
