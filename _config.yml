@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Stuff 
+title: Notes on programming, reverse engineering and retro games
 description: >- # this means to ignore newlines until "baseurl:"
   Posts on programming and art
 domain: zanidrak.com
@@ -29,6 +29,13 @@ github_username:  raffclar
 # Build settings
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "dark"
+
+# Page view counts from GoatCounter (https://www.goatcounter.com). Set the code that you chose when you signed up,
+# e.g. "zanidrak" for https://zanidrak.goatcounter.com. The script loads only in production builds.
+analytics:
+  provider: "custom"
+goatcounter_code: "gavxn"
+date_format: "%-d %B %Y"
 plugins:
   - jekyll-feed
 
@@ -41,14 +48,16 @@ defaults:
       classes: wide
       author_profile: true 
       read_time: true
+      show_date: true
       comments: true
       share: true
       related: true
       author:
         name: "raffclar"
-        bio: "python dev"
-        avatar: "/assets/images/avatar.png"
-        location: "London" 
+        bio: "Python Developer"
+        avatar: "https://github.com/raffclar.png"
+        location: "London"
+        email: "gavxn@zanidrak.com"
         links:
           - label: "GitHub"
             icon: "fab fa-fw fa-github"

@@ -1,0 +1,101 @@
+/* Styles for the "Inside the creature's mind" series. Dark skin first. */
+.cai {
+  --cai-bg: #1e222b;
+  --cai-panel: #2a303b;
+  --cai-line: #444c5a;
+  --cai-text: #e6e6e6;
+  --cai-dim: #9aa3b2;
+  --cai-accent: #f2b84b;
+  --cai-good: #6fcf97;
+  --cai-bad: #eb6b6b;
+  --cai-blue: #6fa8ff;
+  --cai-violet: #b48cff;
+  background: var(--cai-bg);
+  border: 1px solid var(--cai-line);
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1.5em 0;
+  color: var(--cai-text);
+  font-size: 0.85em;
+}
+.cai h4 { margin: 0 0 0.6em; font-size: 1em; color: var(--cai-accent); }
+.cai p { margin: 0.4em 0; }
+.cai svg { width: 100%; height: auto; display: block; }
+.cai .cai-note { color: var(--cai-dim); font-size: 0.9em; }
+.cai .cai-row { display: flex; flex-wrap: wrap; gap: 0.6em; align-items: center; margin: 0.5em 0; }
+.cai label { color: var(--cai-dim); }
+.cai input[type=range] { flex: 1 1 160px; accent-color: var(--cai-accent); }
+.cai button {
+  background: var(--cai-panel);
+  color: var(--cai-text);
+  border: 1px solid var(--cai-line);
+  border-radius: 5px;
+  padding: 0.35em 0.8em;
+  cursor: pointer;
+  font: inherit;
+}
+.cai button:hover { border-color: var(--cai-accent); }
+.cai button.good { border-color: var(--cai-good); }
+.cai button.bad { border-color: var(--cai-bad); }
+.cai select { background: var(--cai-panel); color: var(--cai-text); border: 1px solid var(--cai-line); border-radius: 5px; padding: 0.3em; font: inherit; max-width: 100%; }
+.cai .cai-val { font-family: monospace; color: var(--cai-accent); min-width: 3.5em; display: inline-block; }
+
+/* Bars */
+.cai .bar-row { display: grid; grid-template-columns: 7.5em 1fr 4em; gap: 0.6em; align-items: center; margin: 0.35em 0; }
+.cai .bar { position: relative; height: 14px; background: var(--cai-panel); border-radius: 7px; overflow: hidden; }
+.cai .bar > i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--cai-accent); border-radius: 7px; transition: width 0.1s linear; }
+.cai .bar-row.top .bar > i { background: var(--cai-good); }
+.cai .bar-row.top span:first-child { color: var(--cai-good); font-weight: bold; }
+.cai .bar-row span:last-child { font-family: monospace; text-align: right; }
+
+/* SVG classes */
+.cai .s-axis { stroke: var(--cai-dim); stroke-width: 1; }
+.cai .s-grid { stroke: var(--cai-line); stroke-width: 1; stroke-dasharray: 3 4; }
+.cai .s-txt { fill: var(--cai-dim); font-size: 12px; font-family: sans-serif; }
+.cai .s-big { fill: var(--cai-text); font-size: 14px; font-family: sans-serif; }
+.cai .s-curve { fill: none; stroke: var(--cai-accent); stroke-width: 2.5; }
+.cai .s-soft { fill: none; stroke: var(--cai-blue); stroke-width: 2; stroke-dasharray: 6 5; }
+.cai .s-box { fill: var(--cai-panel); stroke: var(--cai-line); stroke-width: 1.5; }
+.cai .s-box.hot { stroke: var(--cai-accent); }
+.cai .s-arrow { stroke: var(--cai-dim); stroke-width: 1.5; fill: none; marker-end: url(#cai-arrowhead); }
+
+/* The thought loop animation */
+.cai .loop-dot { fill: var(--cai-accent); }
+
+/* Agenda steps */
+.cai ol.steps { list-style: none; margin: 0.5em 0; padding: 0; counter-reset: st; }
+.cai ol.steps li { counter-increment: st; padding: 0.25em 0.5em; border-left: 3px solid var(--cai-line); margin: 0.2em 0; color: var(--cai-dim); }
+.cai ol.steps li::before { content: counter(st) ". "; }
+.cai ol.steps li.on { border-color: var(--cai-accent); color: var(--cai-text); background: var(--cai-panel); }
+.cai ol.steps li.done { border-color: var(--cai-good); }
+
+/* Decision tree view */
+.cai .tree ul { list-style: none; margin: 0; padding-left: 1.2em; border-left: 1px dashed var(--cai-line); }
+.cai .tree > ul { padding-left: 0; border-left: 0; }
+.cai .tree li { margin: 0.3em 0; }
+.cai .tree .q { display: inline-block; background: var(--cai-panel); border: 1px solid var(--cai-blue); border-radius: 5px; padding: 0.1em 0.5em; }
+.cai .tree .a { color: var(--cai-dim); }
+.cai .tree .leaf { display: inline-block; border-radius: 5px; padding: 0.1em 0.5em; font-family: monospace; }
+.cai .tree .leaf.pos { background: rgba(111, 207, 151, 0.18); border: 1px solid var(--cai-good); }
+.cai .tree .leaf.neg { background: rgba(235, 107, 107, 0.18); border: 1px solid var(--cai-bad); }
+.cai .tree .leaf.zero { background: var(--cai-panel); border: 1px solid var(--cai-line); }
+.cai .chips span { display: inline-block; margin: 2px; padding: 0.1em 0.5em; border-radius: 10px; background: var(--cai-panel); font-size: 0.9em; }
+.cai .chips span.pos { border: 1px solid var(--cai-good); }
+.cai .chips span.neg { border: 1px solid var(--cai-bad); }
+.cai .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+@media (max-width: 640px) { .cai .grid2 { grid-template-columns: 1fr; } .cai .bar-row { grid-template-columns: 6em 1fr 3.5em; } }
+
+figure.cai-fig { margin: 1.5em 0; }
+figure.cai-fig img, figure.cai-fig video { width: 100%; border-radius: 6px; display: block; }
+figure.cai-fig figcaption { font-size: 0.8em; color: #9aa3b2; margin-top: 0.4em; }
+
+.cai-box { border-left: 4px solid #f2b84b; background: #262b35; padding: 0.7em 1em; margin: 1.5em 0; font-size: 0.9em; border-radius: 0 6px 6px 0; }
+.cai-box.def { border-color: #6fa8ff; }
+.cai-box strong:first-child { display: block; margin-bottom: 0.2em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cai .bar > i { transition: none; }
+}
+
+#cai-species .bar-row { grid-template-columns: 10em 1fr 5em; }
+@media (max-width: 640px) { #cai-species .bar-row { grid-template-columns: 8em 1fr 4.5em; } }
