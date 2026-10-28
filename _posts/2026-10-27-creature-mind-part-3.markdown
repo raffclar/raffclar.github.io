@@ -327,5 +327,8 @@ So here is the full mind:
 7. The creature also learns when it **watches**.
 8. Each **species** has its own inborn traits, and each creature is a little different from the others.
 
-Overall, none of these parts are complex on their own. A sigmoid, a tree, and a few rules. But together they make a
-creature that exhibits novel behaviour and that players have come to love. Quite an interesting system!
+Overall, none of these parts are complex on their own. A sigmoid, some decision trees, desires, sources, drives, and a
+few rules. But together they make a creature that exhibits novel behaviour and that players have come to love; Richard
+Evan's in the book AI Programming Wisdom, calls this combination of parts, "Representational Promiscuity".
+
+Quite an interesting system!
