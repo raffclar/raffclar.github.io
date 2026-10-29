@@ -130,7 +130,7 @@ A sigmoid is a curve with the shape of the letter S. When applied to a number, t
 
 Think about a light dimmer, and the knob to control the level of light. Initially at first, when you turn the knob,
 almost nothing happens. Near the middle, the light comes on fast and then a with a bit more turning the light is at full
-power but of you turn the knob more, the light does not get brighter.
+power but if you turn the knob more, the light does not get brighter.
 
 That is what sigmoid basically does. Many AI systems use sigmoids. They are useful when you want a "yes or no" answer
 that is not too sharp. The answer can be "almost yes" or "a little bit yes". This might seem like a small detail
