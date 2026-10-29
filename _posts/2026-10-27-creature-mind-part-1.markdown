@@ -92,7 +92,7 @@ wanderlust.
 Some are purely social: the creature wants to play, or maybe to impress a town, or perhaps to have another creature as
 a friend.
 
-Each desire is a number in Black & White. Desires can 0 or above. If a desire is 0, it has no effect on the creature.
+Each desire is a number in Black & White. Desires can be 0 or above. If a desire is 0, it has no effect on the creature.
 
 Most desires stop at a maximum near 1 or 2. For example, Hunger can go up to 2.0, and Fear can go up to 0.92. A
 creature's species affects their desires and what the player teaches them can change how those desires behave too
