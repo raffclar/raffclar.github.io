@@ -82,30 +82,28 @@ the creature's AI load on the system by limiting how many much effort goes into 
 
 ## Forty desires
 
-The creature in Black & White has 40 desires.
+The creature in Black & White has 40 desires. They cover a wide area of needs and wants:
 
-Some of the creature's desires are pure bodily needs: hunger, tiredness, the need to drink, and the need to poo.
+Some of the creature's desires are needs: hunger, tiredness, thirst, and the need to poo.
 
-Some of the desires are feelings: fear, anger, compassion, and curiosity, happiness and there's even one called
+Some of the desires are emotions such as fear, anger, compassion, and curiosity, happiness, and there's even one called
 wanderlust.
 
 Some are purely social: the creature wants to play, or maybe to impress a town, or perhaps to have another creature as
 a friend.
 
-Each desire is a number in Black & White. A desire with a value of 0 causes the desire to have no effect on the
-creature's state of mind.
+Each desire is a number in Black & White. Desires can 0 or above. If a desire is 0, it has no effect on the creature.
 
 Most desires stop at a maximum near 1 or 2. For example, Hunger can go up to 2.0, and Fear can go up to 0.92. A
 creature's species affects their desires and what the player teaches them can change how those desires behave too
 (see Part 3).
 
-The minimum value a desire can hold is 0, it can can't go below that that value.
-
 ## Sources: where desires come from
 
 A desire does not grow on its own as inputs will push it up. The game calls these inputs **sources**.
-There are 61 sources in total for Black & White. Each source reads one fact about the creature or the world.
-Here are some examples:
+For Black & White's creatures, there are 61 sources and each one represents something about the creature or the world.
+
+Here's some examples we've found:
 
 * A creature with low energy pushes the Hunger desire.
 * Exhaustion pushes the Tiredness desire.
@@ -127,8 +125,8 @@ Note: sources can hold a negative value, but in practice they are always zero or
 ## The sigmoid, in plain words
 
 <div class="cai-box def"><strong>Sigmoid</strong>
-A sigmoid is a curve with the shape of the letter S. It changes any number into a number from 0 to 1. Large negative
-numbers become nearly 0. Large positive numbers become nearly 1. Zero becomes exactly 0.5.</div>
+A sigmoid is a curve with the shape of the letter S. When applied to a number, that number will sit somewhere between
+0 and 1. Large negative numbers become nearly 0. Large positive numbers become nearly 1. Zero becomes exactly 0.5.</div>
 
 Think about a light dimmer, and the knob to control the level of light. Initially at first, when you turn the knob,
 almost nothing happens. Near the middle, the light comes on fast and then a with a bit more turning the light is at full
