@@ -11,20 +11,23 @@ categories: ai games black-and-white
 This is part 3 of a series about the creature AI in Black & White (2001).
 
 * [Part 1: how it feels]({% post_url 2026-10-27-creature-mind-part-1 %}). Desires, and the curve that drives them.
-* [Part 2: how it chooses]({% post_url 2026-10-27-creature-mind-part-2 %}). Plans, and how it picks one.
-* **Part 3: how it learns.** Slaps, strokes, decision trees, and copying.
+* [Part 2: how it chooses]({% post_url 2026-10-27-creature-mind-part-2 %}). How it acts on those Desires with Plans,
+  and how it picks one.
+* **Part 3: how it learns.**  Player reward and punish system, decision trees, and copying what the villagers and the
+  player do.
 
 The creature learns in two ways. It learns from your in-game hand, when you slap or stroke it. And it learns when it
 watches you or the villagers interact with the world.
 
 ## Your hand
 
-When you hold the creature with the action button, the game enters the creature reward and punish system. It keeps a
-**running total** from −1 to +1.
+When you hold the creature with the action button, the game enters the creature reward and punish system. It's a
+samll interactive system with a minimal GUI with some sliders on the left. It keeps a **running total** from −1 to +1
+showing how much reward or punishment you have given the creature.
 
-* **A stroke** adds 0.1.
-* **A slap** removes value. A gentle slap takes away 0.1. A hard slap takes away 0.2. If the total is above 0.25, a slap
-  takes away twice as much.
+* **A stroke** adds 0.1 to the slider
+* **A slap** removes value. A gentle slap takes away 0.1 and hard slap takes away 0.2. If the total is above 0.25, a
+  slap takes away twice as much.
 
 When you let go, the total goes to the creature as one lesson. A lesson smaller than 0.5 counts as 0.5. So one gentle
 stroke teaches as much as five strokes. What does change is how much the creature feels about you, the more strokes,
