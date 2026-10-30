@@ -13,12 +13,12 @@ It was one of the major selling points of the game and a fairly serious and size
 Back in the day, many players thought that it was alive and developed attachments to their creatures (I did!).
 
 I highly recommend reading **AI Game Programming Wisdom** (ISBN 978-1584500773), section 11.2, pages 567-578,
-by Lionhead AI designer Richard Evans. Much of the content in these three posts is discussed in detail in this book,
-and I've checked decompiled code from the game against his explanations of the Black & White creature AI.
+by Lionhead AI designer Richard Evans. Much of the content in these three posts is discussed in detail in the book,
+and I've checked the decompiled code from the game against his explanations of the Black & White creature AI.
 
 <figure class="cai-fig">
-<img src="/assets/creature_ai/intro_series.png" alt="The three creatures stand in a forest glade: a cow, an orange ape and a tiger.">
-<figcaption>The three creatures that you can choose from at the start of the game: the cow, the ape and the tiger.</figcaption>
+<img src="/assets/creature_ai/intro_series.png" alt="The three creatures stand in land 1's forest glade: a cow, an orange ape and a tiger.">
+<figcaption>The three creatures stand in land 1's forest glade: a cow, an orange ape and a tiger.</figcaption>
 </figure>
 
 The code of the original game has been extensively studied thanks to
@@ -36,11 +36,11 @@ but we'll see.
 * [Part 2: how it chooses]({% post_url 2026-10-27-creature-mind-part-2 %}). How it acts on those Desires with Plans,
   and how it picks one.
 * [Part 3: how it learns]({% post_url 2026-10-27-creature-mind-part-3 %}). Player reward and punish system, decision
-  trees, and copying villagers and the player.
+  trees, and copying what the villagers and the player do.
 
 <figure class="cai-fig">
 <img src="/assets/creature_ai/p1-hungry-tiger.jpg" alt="A tiger creature stands on a grass field. Bars at the left show Damage 0%, Hunger 80%, Tiredness 0%.">
-<figcaption>A mature tiger. Its Hunger is at 80%. The bars at the left show three out of forty of its desires.</figcaption>
+<figcaption>A tiger creature stands on a grass field. Bars at the left show Damage 0%, Hunger 80%, Tiredness 0%.</figcaption>
 </figure>
 
 ## An agent
@@ -48,7 +48,7 @@ but we'll see.
 In AI, an **agent** is a thing that senses the world, decides, and then acts. A robot vacuum is an agent,
 a chess program is an agent, and the creature in Black & White is an agent too.
 
-The Lionhead AI designers built the Black & White's creature on those three ideas:
+The Lionhead AI designers built the Black & White's creature on these three ideas:
 
 * **B**eliefs. What the creature knows about each object near it. For example,
   "That sheep over there near the village is mine and it's alive."
@@ -100,14 +100,15 @@ creature's species affects their desires and what the player teaches them can ch
 
 ## Sources: where desires come from
 
-A desire does not grow on its own as inputs will push it up. The game calls these inputs **sources**.
-For Black & White's creatures, there are 61 sources and each one represents something about the creature or the world.
+A desire does not grow on its own. The desire's strength is determined by a set of inputs which push it up.
+The game calls these inputs **sources**. For Black & White's creatures, there are 61 sources and each one represents
+something about the creature or the world.
 
 Here's some examples we've found:
 
 * A creature with low energy pushes the Hunger desire.
 * Exhaustion pushes the Tiredness desire.
-* The night source (when in-game world is night time) pushes Tiredness and Fear.
+* The night source (when the in-game world is nighttime) pushes Tiredness and Fear.
 * Damage to the creature pushes two as well: Fear and the desire to restore health.
 
 Each source has a **threshold**.
@@ -129,7 +130,7 @@ A sigmoid is a curve with the shape of the letter S. When applied to a number, t
 0 and 1. Large negative numbers become nearly 0. Large positive numbers become nearly 1. Zero becomes exactly 0.5.</div>
 
 Think about a light dimmer, and the knob to control the level of light. Initially at first, when you turn the knob,
-almost nothing happens. Near the middle, the light comes on fast and then a with a bit more turning the light is at full
+almost nothing happens. Near the middle, the light comes on fast, and then with a bit more turning, the light is at full
 power but if you turn the knob more, the light does not get brighter.
 
 That is what sigmoid basically does. Many AI systems use sigmoids. They are useful when you want a "yes or no" answer
@@ -167,10 +168,10 @@ there's probability and decision-making logic. Think about the other ways we cou
   its mood in one big jump, not very realistic. When the energy moves up and down near the threshold, the drive goes
   on, off, on, off.
 
-**Use a sigmoid.** Now when we're below the threshold, the creature is calm but Above it, the drive is full. Now when
+**Use a sigmoid.** Now when we're below the threshold, the creature is calm but above it, the drive is full. Now when
   we're between the two, there is a short zone where the change is smooth.
 
-<div class="cai" id="cai-why"><h4>Three ways to read the energy source for Hunger (threshold 0.4)</h4></div>
+<div class="cai" id="cai-why"><h4>Three ways to read the energy source for Hunger (with a threshold 0.4)</h4></div>
 
 The sigmoid also gives Black & White four more good things:
 
@@ -187,8 +188,10 @@ The sigmoid also gives Black & White four more good things:
    & White had some very aggressive optimisations to get performance somewhere playable).
 
 The game makes its curve very steep, so it's practically a switch, with only a short soft zone. Designers can easily
-understand a switch like this so logic can be explained like so "the creature gets hungry at 40% energy".
-The soft zone simply stops the rapid fast on/off changes.
+understand something like "the creature gets hungry at 40% energy". The soft zone simply stops the rapid fast on/off
+changes.
+
+Now the import part:
 
 If we take a source value, apply the sigmoid curve to that value, we get a **drive**. Each desire can have many drives.
 
@@ -198,7 +201,7 @@ differ slightly due to different thresholds which are covered in Part 3.
 
 ## From drive to desire
 
-In each turn, the game adds all the drives of a desire then it divides the total by the desire's **growth time**.
+In each turn, the game adds all the drives of a desire, then it divides the total by the desire's **growth time**.
 The growth time in the table below tells us how fast the desires can grow in-game:
 
 | Desire | Maximum | Growth time | Main sources |

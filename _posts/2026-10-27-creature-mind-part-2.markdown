@@ -11,8 +11,9 @@ categories: ai games black-and-white
 This is part 2 of a series about the creature AI in Black & White (2001).
 
 * [Part 1: how it feels]({% post_url 2026-10-27-creature-mind-part-1 %}). Desires, and the curve that drives them.
-* **Part 2: how it chooses.** Plans, and how it picks one.
-* [Part 3: how it learns]({% post_url 2026-10-27-creature-mind-part-3 %}). Slaps, strokes, decision trees and copying.
+* **Part 2: how it chooses.**  How it acts on those Desires with Plans, and how it picks one.
+* [Part 3: how it learns]({% post_url 2026-10-27-creature-mind-part-3 %}). Player reward and punish system, decision
+  trees, and copying what the villagers and the player do.
 
 In part 1, we showed how the creature got 40 desires. How each desire is a number that grows.
 Now the creature must act on those desires. So what does it do? If it's hungry, what does it eat? Where?
@@ -20,7 +21,7 @@ And when does it stop eating?
 
 <figure class="cai-fig">
 <img src="/assets/creature_ai/cow.png" alt="A cow creature stands on a grass field and looks at the god's hand in front of it.">
-<figcaption>A cow creature waits for its next plan.</figcaption>
+<figcaption>A cow creature stands on a grass field and looks at the god's hand in front of it.</figcaption>
 </figure>
 
 ## A plan
@@ -73,8 +74,8 @@ There are some funny and bizarre actions in the game:
 
 * `GO_TO_HILL_AND_WALK_ALONG_RIDGE` fills the Wanderlust desire.
 * `BE_PATHETIC_TO_PLAYER` action tries to get the player's attention and fill that corresponding desire.
-* `MOPE_ABOUT_FRIEND`, `TELL_FRIEND_A_JOKE` and `SIT_WIH_FRIEND` are all actions that the creature can take with another
-  creature.
+* `MOPE_ABOUT_WITH_FRIEND`, `TELL_FRIEND_A_JOKE` and `SIT_WIH_FRIEND` are all actions that the creature can take with
+  another creature.
 
 ## Step 2: choose an object
 
@@ -112,10 +113,10 @@ about it, so the pit scores 0.1. The distance makes that 0.0985. The priority of
 Okay, let's imagine the creature is already doing something. Maybe it's looking around, or maybe it's sleeping.
 Should it change to the new plan?
 
-A simple rule is "always do the most urgent plan". But this rule has a huge problem. Desires go up and down a little all
-the time from various drives. When two plans are nearly equal, the creature needs to decide which one to do, but if it's
-not careful, it will change from one to the other again and again. It will start to walk to the food, then turns to
-look at a tree, then turns back to the food and so on. That looks unnatural and not very clever.
+A simple rule we could follow is "always do the most urgent plan". But this rule has a huge problem. Desires go up and
+down a little all the time from various drives. When two plans are nearly equal, the creature needs to decide which one 
+to do, but if it's not careful, it will change from one to the other again and again. It will start to walk to the food,
+then turns to look at a tree, then turns back to the food, and so on. That looks unnatural and not very clever.
 
 So the game uses a better rule to deal with this problem:
 
@@ -166,7 +167,7 @@ A plan can end in three ways.
 
 ## Summary
 
-* A plan is a desire, an action and an object.
+* A plan is a desire, an action, and an object.
 * The creature chooses an action by opinion and novelty. Novelty makes it want to change.
 * It chooses an object by what it has learnt and by distance.
 * Priority comes from the desire and the object.
