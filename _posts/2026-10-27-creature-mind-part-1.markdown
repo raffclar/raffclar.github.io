@@ -23,7 +23,7 @@ and I've checked the decompiled code from the game against his explanations of t
 
 The code of the original game has been extensively studied thanks to
 [bw1-decomp](https://github.com/openblack/bw1-decomp), a project ran by the openblack team. This series
-tells you what was found inside the creature's mind. You do not need to know much about AI here. I'll attempt to explain
+tells you what was found inside the creature's mind. You do not need to know much about AI. I'll attempt to explain
 each idea when it comes up. The goal here is to talk at a high level about the creature's logic without digging into the
 decompiled code or assembly.
 
